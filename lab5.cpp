@@ -1,43 +1,34 @@
 #include <iostream>
+#include <vector>
 #include <string>
 #include <cstring>
 using namespace std;
 #include "Lab5Guest.h"
-void swap (int *xp,int *yp){
-	int temp = *xp;
-	*xp = *yp;
-	*yp = temp;
-}
 
 
 class Guest {
 	public:
+		enum Gender {
+			FEMALE,
+			MALE,
+			NONBINARY
+		};
+		void swap(Guest* xp, Guest* yp) {
+			int temp = *xp;
+			*xp = *yp;
+			*yp = temp;
+		}
+
 		
-		void bubbleSort(Guest arr[], int n){
-	int i,j;
-	for (i=0; i<n-1; i++)
-		for (j=0; j<n-1-i; j++)
-			if (arr[j]>arr[j+1])
-				swap(&arr[j], &arr[j+1]);}
-		Guest(int id, int age, string name, string city, string phoneNumber){
+		Guest(int id, string name, int age, string city, string phoneNumber, Gender gender){
 			setId (id);
 			setAge (age);
 			setName (name);
 			setCity (city);
 			setPhoneNumber (phoneNumber);
+			this->gender = gender;
 		};
-		void getGender(string gender){
-			if (gender == "female"){
-				Gender :: FEMALE;
-			}
-			if (gender == "male"){
-				Gender :: MALE;
-			}
-			if (gender == "nonbinary"){
-				Gender :: NONBINARY;
-			}
-			
-		}
+		
 		int getId (){
 			return id;
 		}
@@ -69,10 +60,12 @@ class Guest {
 			this->phoneNumber=phoneNumber;
 		}
 		
+		
+
 		bool isLuckyPhoneNumber(){
 			int count = 0;
-			string s = phoneNumber;
-			int n= s.length();
+			
+			int n= getPhoneNumber.length();
 			char char_array[n+1];
 			strcpy(char_array, s.c_str());
 			
@@ -83,11 +76,10 @@ class Guest {
 				}
 			}
 			if (count >= 3){
-				cout << "true" << endl;
+				
 				return true;
-				}
+			}
 			else{
-				cout << "false" << endl;
 				return false;
 			}
 				
@@ -96,14 +88,23 @@ class Guest {
 };
 class Party{
 	public:
-		enum Gender {
-			FEMALE,
-			MALE,
-			NONBINARY
-		};
+		vector<Guest> guests;
+		
 		int day;
 		string reason;
-		int findAverageAge( Guest* guest ,Gender gender){
+		void bubbleSort(vector<Guest> arr, int SIZE) {
+			int i, j;
+			for (i = 0; i < SIZE - 1; i++)
+				for (j = 0; j < SIZE - 1 - i; j++)
+					if (arr[j] > arr[j + 1])
+						swap(&arr[j], &arr[j + 1]);
+		}
+		Party(vector<Guest> guests, int day; string reason) {
+			this->guests = guests;
+			this->day = day;
+			this->reason = reason;
+		}
+		int findAverageAge( vector<Guest> guests ,Gender gender){
 			if (gender == FEMALE){
 			int age = guest.getAge();
 			int ag=ag+age;
@@ -135,20 +136,3 @@ class Party{
 
 	
 
-int main (){
-	Guest Amelia(1205, 31, "Amelia", "Madrid", "0985735777"/*, enum Gender :: FEMALE*/);
-	Guest Frank(1200, 45, "Frank", "Tokyo", "0632569874"/*,"male"*/);
-	Guest arr[3];
-	arr[0] = Amelia;
-	arr[1] = Frank;
-	arr[2] = Julia;
-	//bubbleSort(arr, 3);
-	Guest Julia{1199, 26, "Julia", "Lviv", "0677721842"/*, "nonbinary"*/};
-
-	Amelia.isLuckyPhoneNumber();
-	Frank.isLuckyPhoneNumber();
-	Julia.isLuckyPhoneNumber();
-	
-
-	return 0;
-}
