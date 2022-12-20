@@ -15,43 +15,44 @@ public:
 		MALE,
 		NONBINARY
 	};
-	void bubbleSort(Guest arr[], int n);
-	Guest(int id, int age, string name, string city, string phoneNumber) {
+	string gender;
+	Guest(int id, string name, int age, string city, string phoneNumber, string gender) {
 		setId(id);
 		setAge(age);
 		setName(name);
 		setCity(city);
 		setPhoneNumber(phoneNumber);
+		this->gender = gender;
 	};
-	void getGender(string gender); 
+
 	int getId() {
 		return id;
 	}
-	int setId(int id) {
+	void setId(int id) {
 		this->id = id;
 	}
 	int getAge() {
 		return age;
 	}
-	int setAge(int age) {
+	void setAge(int age) {
 		this->age = age;
 	}
 	string getName() {
 		return name;
 	}
-	string setName(string name) {
+	void setName(string name) {
 		this->name = name;
 	}
 	string getCity() {
 		return city;
 	}
-	string setCity(string city) {
+	void setCity(string city) {
 		this->city = city;
 	}
 	string getPhoneNumber() {
 		return phoneNumber;
 	}
-	string setPhoneNumber(string phoneNumber) {
+	void setPhoneNumber(string phoneNumber) {
 		this->phoneNumber = phoneNumber;
 	}
 
